@@ -34,7 +34,7 @@ public class ApiController {
 	private static final String ENCRYPT_KEY = "yourEncryptKey01";
 	// 初期ベクトル
 	private static final String INIT_VECTOR = "yourInitVector01";
-	private static final String template = "RSSIDE API, Called by %s!";
+	private static final String template = "This is a test method form %s!";
 	private final AtomicLong counter = new AtomicLong();
 
 //	private final IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes());
@@ -44,7 +44,9 @@ public class ApiController {
 	public String callRssideApi(@RequestParam(value = "kbn", defaultValue = "HTTP") String kbn) {
 		
 		if ("heroku".equals(kbn)) {
-			return "callRssideApi method finish!";
+			Response response = new Response(counter.incrementAndGet(), String.format(template, kbn));
+			
+			return response.toString();
 		}
 		
 	    HttpHeaders headers = new HttpHeaders();// ヘッダ部
