@@ -46,7 +46,7 @@ public class ApiController {
 		if ("heroku".equals(kbn)) {
 			Response response = new Response(counter.incrementAndGet(), String.format(template, kbn));
 			System.out.println("■■■■■■■■■■　callRssideApi　：　Response　：" + response.toString());
-			return response.toString();
+			return String.format(template, kbn);
 		}
 		
 	    HttpHeaders headers = new HttpHeaders();// ヘッダ部
